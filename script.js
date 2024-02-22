@@ -43,18 +43,19 @@ function addTodoToList() {
   let textValue = TextInputComponent.value;
   if (textValue.trim() === "") {
     alert("Please enter a todo item!");
+    return;
   } else {
     todo = {
       id: Math.random(),
       text: textValue,
       completed: false,
     };
+    todos.push(todo);
+    let todoItem = createTodoItem(todo);
+    TodoListContainer.appendChild(todoItem);
+    updateTasksCount();
+    TextInputComponent.value = "";
   }
-  todos.push(todo);
-  let todoItem = createTodoItem(todo);
-  TodoListContainer.appendChild(todoItem);
-  updateTasksCount();
-  TextInputComponent.value = "";
 }
 
 function removeTodoFromList(id) {
