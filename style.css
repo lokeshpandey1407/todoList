@@ -9,7 +9,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  /* justify-content: center; */
   align-items: center;
   background-color: rgb(36, 133, 176);
   font-family: "Exo 2", sans-serif;
@@ -52,7 +51,7 @@ header {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  margin: 7rem 0 2rem 0;
+  margin: 2rem 0 2rem 0;
   color: rgb(182, 213, 239);
 }
 
