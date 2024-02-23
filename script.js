@@ -3,6 +3,7 @@ const ButtonComponent = document.querySelector("#task-input-btn");
 const TodoListContainer = document.querySelector("#tasks");
 const OtherInfoContainer = document.querySelector("#other-info");
 const DateContainer = document.querySelector(".date");
+const FinishedTasksContainer = document.querySelector("#finished-tasks");
 
 let todos = [];
 let todo = {};
@@ -26,7 +27,7 @@ function createTodoItem(todo) {
     removeTodoFromList(todo.id);
   });
   checkboxElement.addEventListener("change", function () {
-    markAsComplete(taskTextElement);
+    markAsComplete(taskTextElement, todo);
   });
   listElement.appendChild(checkboxElement);
   listElement.appendChild(taskTextElement);
@@ -34,10 +35,16 @@ function createTodoItem(todo) {
   return listElement;
 }
 
-function markAsComplete(TaskElement) {
+function markAsComplete(TaskElement, todo) {
   if (TaskElement) {
     TaskElement.classList.toggle("completed");
   }
+  if (todo.completed) {
+    todo.completed = false;
+  } else {
+    todo.completed = true;
+  }
+  updateFinishedTasksCount();
 }
 
 function addTodoToList() {
@@ -55,7 +62,9 @@ function addTodoToList() {
     let todoItem = createTodoItem(todo);
     TodoListContainer.appendChild(todoItem);
     updateTasksCount();
+    updateFinishedTasksCount();
     TextInputComponent.value = "";
+    TextInputComponent.focus();
   }
 }
 
@@ -68,6 +77,7 @@ function removeTodoFromList(id) {
   if (todoItem) {
     todoItem.remove();
     updateTasksCount();
+    updateFinishedTasksCount();
   }
 }
 
@@ -78,12 +88,19 @@ function updateTasksCount() {
   OtherInfoContainer.appendChild(countElement);
 }
 
-function updateUnfishedTasksCount() {}
+function updateFinishedTasksCount() {
+  let completedCount = todos.filter((todo) => {
+    return todo.completed === true;
+  }).length;
+  let totalCount = todos.length;
+  FinishedTasksContainer.textContent = `${completedCount} of ${totalCount} tasks `;
+}
 
 document.addEventListener("DOMContentLoaded", function () {
   TextInputComponent.focus();
   updateTasksCount();
   updateCurrentDate();
+  updateFinishedTasksCount();
 });
 function updateCurrentDate() {
   const date = new Date();
