@@ -2,6 +2,7 @@ const TextInputComponent = document.querySelector("#task-input");
 const ButtonComponent = document.querySelector("#task-input-btn");
 const TodoListContainer = document.querySelector("#tasks");
 const OtherInfoContainer = document.querySelector("#other-info");
+const DateContainer = document.querySelector(".date");
 
 let todos = [];
 let todo = {};
@@ -73,11 +74,98 @@ function removeTodoFromList(id) {
 function updateTasksCount() {
   OtherInfoContainer.innerHTML = "";
   const countElement = document.createElement("p");
-  countElement.textContent = `${todos.length} tasks left`;
+  countElement.textContent = `${todos.length} tasks`;
   OtherInfoContainer.appendChild(countElement);
 }
+
+function updateUnfishedTasksCount() {}
 
 document.addEventListener("DOMContentLoaded", function () {
   TextInputComponent.focus();
   updateTasksCount();
+  updateCurrentDate();
 });
+function updateCurrentDate() {
+  const date = new Date();
+  let currentDate = date.getDate();
+  let currentMonth = getCurrentMonthInString(date.getMonth());
+  let currentDay = getCurrentDayInString(date.getDay());
+  DateContainer.textContent = `${currentDay} ${currentDate} ${currentMonth}`;
+}
+
+function getCurrentDayInString(day) {
+  let ans = "";
+  switch (day) {
+    case 1:
+      ans = "Monday";
+      break;
+    case 2:
+      ans = "Tuesday";
+      break;
+    case 3:
+      ans = "Wednesday";
+      break;
+    case 4:
+      ans = "Thursday";
+      break;
+    case 5:
+      ans = "Friday";
+      break;
+    case 6:
+      ans = "Saturday";
+      break;
+    case 7:
+      ans = "Sunday";
+      break;
+    default:
+      ans = "Funday";
+      break;
+  }
+  return ans;
+}
+
+function getCurrentMonthInString(day) {
+  let ans = "";
+  switch (day) {
+    case 0:
+      ans = "January";
+      break;
+    case 1:
+      ans = "Feburary";
+      break;
+    case 2:
+      ans = "March";
+      break;
+    case 3:
+      ans = "April";
+      break;
+    case 4:
+      ans = "May";
+      break;
+    case 5:
+      ans = "June";
+      break;
+    case 6:
+      ans = "July";
+      break;
+    case 7:
+      ans = "August";
+      break;
+    case 8:
+      ans = "September";
+      break;
+    case 9:
+      ans = "October";
+      break;
+    case 10:
+      ans = "November";
+      break;
+    case 11:
+      ans = "December";
+      break;
+    default:
+      ans = "";
+      break;
+  }
+  return ans;
+}

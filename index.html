@@ -13,22 +13,30 @@
     <title>Todo++</title>
   </head>
   <body>
-    <header></header>
-    <main>
-      <div id="form">
-        <input
-          type="text"
-          id="task-input"
-          placeholder="Write something ..."
-        /><button id="task-input-btn">Add Todo</button>
-      </div>
-      <hr />
-      <ul id="tasks">
-        <!-- adding todolist dynamically -->
-      </ul>
-      <hr />
-      <section id="other-info"></section>
-    </main>
-    <script src="script.js"></script>
+    <div class="wrapper">
+      <header>
+        <h1>Todo list</h1>
+        <h3 class="date">dfs</h3>
+      </header>
+      <main>
+        <div id="form">
+          <input
+            type="text"
+            id="task-input"
+            placeholder="Whats your plan for today ?"
+          /><button id="task-input-btn">Add Todo</button>
+        </div>
+        <hr />
+        <ul id="tasks">
+          <!-- adding todolist dynamically -->
+        </ul>
+        <hr />
+        <section id="footer">
+          <p id="other-info"></p>
+          <p id="unfinished-tasks"></p>
+        </section>
+      </main>
+      <script src="script.js"></script>
+    </div>
   </body>
 </html>
